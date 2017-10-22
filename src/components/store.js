@@ -10,7 +10,7 @@ function rootReducer(state = {}, action) {
 const criteriaReducer = (criteria = [], action) => {
     switch (action.type) {
       case 'ADD_CRITERIA':
-        return [...criteria, action.criteria];
+        return [...criteria, action.criterium];
       case 'WIPE_CRITERIA':
         return [];
       default:
@@ -21,9 +21,9 @@ const criteriaReducer = (criteria = [], action) => {
 const recipeListReducer = (recipeList = [], action) => {
 switch (action.type) {
     case 'SET_RECIPES':
-    return action.recipes;
+        return action.recipes;
     default:
-    return recipeList;
+        return recipeList;
     }
 };
   

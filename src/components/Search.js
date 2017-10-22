@@ -2,42 +2,44 @@ import React            from 'react';
 import { connect }          from 'react-redux';
 import CriteriaList     from './CriteriaList';
 
-class Search extends React.Component{
-    constructor(props){
-        super(props);
-
-        this.state = {
-            searchText: "",
-            criteria: []
+class Search extends React.Component {
+    
+    constructor(props) {
+         super(props)
+      
+      this.state = {
+        searchText: '',
+      };
+      
+          this.handleChange = e => this.setState({searchText: e.target.value});
+      this.addCriteria = e => {
+        if (this.state.searchText) {
+          this.setState({searchText: ''});
+          this.props.addCriteria(this.state.searchText);
         }
-
-        this.handleChange = e => this.setState({searchText: e.target.value})
-        this.onSubmit = (e, form) => {
-            e.preventDefault();
-            console.log(form);
-            const {searchText , criteria} = this.state;
-            this.setState({
-                criteria: [...criteria , searchText]
-            })
-            console.log(criteria);
-        }
+      };
     }
-    render(){
+    
+    render() {
         return (
-            <div>
-                <CriteriaList criteria={this.state.criteria}/>
-                <form onSubmit={this.onSubmit}>
-                    <input type="text" value={this.state.searchText} onChange={this.handleChange} / >
-                    <button type="submit"> Add to search</button>
-                </form>
-            </div>
-        )
+        <div>
+            <input type="text" value={this.state.searchText} onChange={this.handleChange}/>
+            <button onClick={this.addCriteria}>Add to search</button>
+            <button onClick={this.props.wipeCriteria}>Wipe criteria</button>
+          <CriteriaList criteria={this.props.criteria} />
+        </div>
+      );  
     }
-}
+    
+  }
+  
 
+const mapStateToProps = state => ({
+  criteria: state.criteria
+});
 const mapDispatchToProps = dispatch => ({
 	addCriteria: (criterium) => {dispatch({type: 'ADD_CRITERIA', criterium})},
-  wipeCriteria: () => {dispatch({type: 'WIPE_CRITERIA'})}
+    wipeCriteria: () => {dispatch({type: 'WIPE_CRITERIA'})}
 });
 
-export default connect(undefined, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
