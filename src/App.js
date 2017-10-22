@@ -1,7 +1,8 @@
-import React from 'react';
+import React     from 'react';
+import RecipeList    from './components/RecipeList';
 
 import './style.sass';
 
 export default function App() {
-    return <h1>Hello World!</h1>;
+    return <RecipeList />;
 }
