@@ -1,7 +1,8 @@
 import React            from 'react';
+import { connect }          from 'react-redux';
 import CriteriaList     from './CriteriaList';
 
-export default class Search extends React.Component{
+class Search extends React.Component{
     constructor(props){
         super(props);
 
@@ -33,3 +34,10 @@ export default class Search extends React.Component{
         )
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+	addCriteria: (criterium) => {dispatch({type: 'ADD_CRITERIA', criterium})},
+  wipeCriteria: () => {dispatch({type: 'WIPE_CRITERIA'})}
+});
+
+export default connect(undefined, mapDispatchToProps)(Search);
