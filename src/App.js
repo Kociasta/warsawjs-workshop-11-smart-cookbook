@@ -1,8 +1,13 @@
-import React     from 'react';
-import RecipeList    from './components/RecipeList';
+import React            from 'react';
+import RecipeList       from './components/RecipeList';
+import Search           from './components/Search';
 
 import './style.sass';
 
 export default function App() {
-    return <RecipeList />;
+    return <div>
+        <Search />
+        <RecipeList /> 
+        
+        </div>;
 }

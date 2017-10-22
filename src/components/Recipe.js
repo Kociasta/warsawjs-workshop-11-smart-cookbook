@@ -3,10 +3,10 @@ import React     from 'react';
 function Recipe(props) {
 
     const name = props.name,
-    imgURL = props.imgURL,
+    imgURL = props.image,
     description = props.description;
     
-    const ingredients = props.ingredients.map(ing => <li key={ing}>{ing}</li>);
+    const ingredients = props.ingridients.map(ing => <li key={ing}>{ing}</li>);
 
 
     return (
